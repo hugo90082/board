@@ -17,7 +17,7 @@
     <fieldset>
     
     <!-- Form Name -->
-    <legend>網管人員登入</legend>
+    <legend>登入</legend>
     
     <!-- Text input-->
     <div class="form-group">

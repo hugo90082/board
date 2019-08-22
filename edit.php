@@ -1,3 +1,18 @@
+<?php
+header("content-type:text/html; charset=utf-8");
+
+$db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
+$db->exec("set names utf8");
+$id = $_GET["ID"];
+
+$result = $db->prepare("select * from message where ID = :ID");
+$result->bindValue(':ID', $id, PDO::PARAM_STR);
+$result->execute();
+$row = $result->fetch();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,13 +32,13 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>公告訊息管理系統 -- 修改</legend>
+<legend>修改留言</legend>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="topic">標題:</label>  
   <div class="col-md-4">
-  <input id="topic" name="topic" value="{{ $item->topic }}" type="text" placeholder="" class="form-control input-md">
+  <input id="topic" name="topic" value="<?php echo $row['topic'];?>" type="text" placeholder="" class="form-control input-md">
     
   </div>
 </div>
@@ -32,7 +47,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="content">內容:</label>  
   <div class="col-md-4">
-  <textarea class="form-control input-md" id="content" name="content">{{ $item->content }}</textarea>
+  <textarea class="form-control input-md" id="content" name="content"><?php echo $row['content'];?></textarea>
   </div>
 </div>
 

@@ -12,12 +12,12 @@
 
 <div class="container">
 
-<form method="post" action="/home" class="form-horizontal">
+<form method="post" action="index.php" class="form-horizontal">
     
 <fieldset>
 
 <!-- Form Name -->
-<legend>公告訊息管理系統 -- 新增</legend>
+<legend>建立留言</legend>
 
 <!-- Text input-->
 <div class="form-group">
