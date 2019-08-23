@@ -33,14 +33,20 @@
                             <textarea class="form-control input-md" id="content" name="content" 
                                     pattern="([\u4E00-\u9FFF\w]{1,50})+"></textarea>  
                         </div>
+                        
                     </div>
-
+                    <?php 
+                        session_start();
+                        @$NoValue = $_SESSION['NoValue'];
+                    ?>
+                    <p class='text-center'><?= $NoValue ? $NoValue : ' '?></p>
                     <!-- Button (Double) -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="okOrCancel"></label>
                         <div class="col-md-8">
-                            <button type="submit" id="okOrCancel" name="okOrCancel" class="btn btn-success" value="OK">送出新增</button>
-                            <button type="submit" id="okOrCancel" name="okOrCancel" class="btn btn-danger" value="cancel">取消清空</button>
+                            <button type="submit" id="ok" name="okOrCancel" class="btn btn-success" value="OK">送出新增</button>
+                            <button type="submit" id="Cancel" name="okOrCancel" class="btn btn-danger" value="cancel">取消</button>
+                            
                         </div>
                     </div>
 
@@ -52,3 +58,7 @@
 
     </body>
 </html>
+                    <?php 
+
+                        session_unset();
+                    ?>
