@@ -12,7 +12,7 @@
 
 <div class="container">
 
-<form method="post" action="index.php" class="form-horizontal">
+<form method="post" action="insert.php" class="form-horizontal">
     
 <fieldset>
 
