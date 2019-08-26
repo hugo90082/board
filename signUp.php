@@ -17,14 +17,14 @@
 				<fieldset>
 				
 				<!-- Form Name -->
-					<legend>登入</legend>
+					<legend>註冊帳號</legend>
 					<?php 
                         session_start();
                         @$mail = $_SESSION['mail'];
                     ?>
 				<!-- Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="ID">帳號Mail hugo</label>  
+						<label class="col-md-4 control-label" for="ID">註冊新帳號Mail</label>  
 						<div class="col-md-4">
 						<input id="mail" name="mail" type="text" placeholder="請填寫mail 最多三十字" 
 								class="form-control input-md" size="30" maxlength="30" value="<?=$mail?>">
@@ -37,14 +37,23 @@
 
 					<!-- Password input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="password">密碼1111</label>
+						<label class="col-md-4 control-label" for="password">新密碼</label>
 						<div class="col-md-4">
 						<input id="password" name="password" type="password" placeholder="請填寫英文或數字或符號 最多二十字" 
 								 class="form-control input-md" size="20" maxlength="20">
 						
 						</div>
 					</div>
-					
+                    <div class="form-group">
+						<label class="col-md-4 control-label" for="passwordCheck">再次確認密碼</label>
+						<div class="col-md-4">
+						<input id="passwordCheck" name="passwordCheck" type="password" placeholder="請填寫英文或數字或符號 最多二十字" 
+								 class="form-control input-md" size="20" maxlength="20">
+						
+						</div>
+					</div>
+                    
+					<h4><p class='text-center text-danger' id="passwordValue"></p></h4>
 					<!-- Button (Double) -->
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="button1id"></label>
@@ -66,12 +75,28 @@
 			var mail = this.value;
 			var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;//判斷格式
 
+            
+
+
 			if(reg.test(mail)){
 				document.getElementById('mailValue').innerHTML = "格式正確";
 
 			}else{
 				document.getElementById('mailValue').innerHTML = "mail格式不正確";
 			}
-		}
+        }
+        
+        password.onchange = function(){
+            password = document.getElementById('password').value;
+        }
+        passwordCheck.onchange = function(){
+            var passwordCheck = this.value;
+            if(password==passwordCheck){
+				document.getElementById('passwordValue').innerHTML = "兩次密碼相同";
+
+			}else{
+				document.getElementById('passwordValue').innerHTML = "兩次密碼不相同";
+			}
+        }
 	</script>
 </html>

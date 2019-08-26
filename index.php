@@ -46,6 +46,7 @@
             
             <?php if(!isset($_SESSION['memberID'])){ ?>
                 <h2>留言板
+                <a href="signUp.php" class="btn btn-md btn-success pull-right">註冊</a>
                 <a href="login.php" class="btn btn-md btn-success pull-right">使用者登入</a></h2>
             <?php } ?>
 
