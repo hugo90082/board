@@ -2,19 +2,25 @@
 header("content-type:text/html; charset=utf-8");
 session_start();
 
-$topic = $_POST["topic"];
-$content = $_POST["content"];
+$topic = htmlspecialchars($_POST["topic"]);
+$content = htmlspecialchars($_POST["content"]);
+
+
 
 
 try
 {
     $_SESSION['NoValue'] = "";
-    if($topic == "" ||$content == "" ){
+    
+    if($_POST["cancel"] == "cancel"){
+        header("location:index.php");//判斷是否按取消
+    }
+    else if($topic == "" ||$content == "" ){ //判斷是否空值
         
         $_SESSION['NoValue'] = "標題或內容不得為空值";
         header("location:create.php");
         
-    }else{
+    }else{//送入資料庫
         $db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->exec("SET CHARACTER SET utf8");

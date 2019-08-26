@@ -13,7 +13,7 @@
         $result->execute();
 
         $db = NULL;
-        header("location:index.php");
+        echo "<script> alert('刪除成功'); window.location.replace('index.php');</script>";
     } catch (PDOException $err) {
         $db->rollback();
         echo "Error: " . $err->getMessage();

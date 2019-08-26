@@ -1,9 +1,11 @@
 <?php
     header("content-type:text/html; charset=utf-8");
 
+
+    $id = $_GET["ID"];
+
     $db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
     $db->exec("set names utf8");
-    $id = $_GET["ID"];
 
     $result = $db->prepare("select * from message where ID = :ID");
     $result->bindValue(':ID', $id, PDO::PARAM_STR);
@@ -51,12 +53,21 @@
                         </div>
                     </div>
                     <input id="msID" name="msID" type="hidden" value="<?php echo $_GET["ID"]?>"> 
+                    <?php 
+                        session_start();
+                        @$NoValue = $_SESSION['NoValue'];
+                    ?>
+                    <h4><p class='text-center text-danger'><?= $NoValue ? $NoValue : ' '?></p></h4>
+                    <?php 
+
+                        unset($_SESSION['NoValue']);
+                    ?>
                     <!-- Button (Double) -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="okOrCancel"></label>
                         <div class="col-md-8">
-                            <button type="submit" id="ok" name="okOrCancel" class="btn btn-success" value="OK">確定修改</button>
-                            <button type="submit" id="Cancel" name="okOrCancel" class="btn btn-danger" value="cancel">取消</button>
+                            <button type="submit" id="ok" name="ok" class="btn btn-success" value="OK">確定修改</button>
+                            <button type="submit" id="cancel" name="cancel" class="btn btn-danger" value="cancel">取消</button>
                         </div>
                     </div>
 

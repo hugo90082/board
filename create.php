@@ -39,13 +39,18 @@
                         session_start();
                         @$NoValue = $_SESSION['NoValue'];
                     ?>
-                    <p class='text-center'><?= $NoValue ? $NoValue : ' '?></p>
+                    <h4><p class='text-center text-danger'><?= $NoValue ? $NoValue : ' '?></p></h4>
+                    <?php 
+
+                        unset($_SESSION['NoValue']);
+                    ?>
+
                     <!-- Button (Double) -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="okOrCancel"></label>
                         <div class="col-md-8">
-                            <button type="submit" id="ok" name="okOrCancel" class="btn btn-success" value="OK">送出新增</button>
-                            <button type="submit" id="Cancel" name="okOrCancel" class="btn btn-danger" value="cancel">取消</button>
+                            <button type="submit" id="ok" name="ok" class="btn btn-success" value="OK">送出新增</button>
+                            <button type="submit" id="cancel" name="cancel" class="btn btn-danger" value="cancel">取消</button>
                             
                         </div>
                     </div>
@@ -58,7 +63,4 @@
 
     </body>
 </html>
-                    <?php 
-
-                        session_unset();
-                    ?>
+                    
