@@ -4,7 +4,7 @@
 
     $topic = htmlspecialchars($_POST["topic"]);
     $content = htmlspecialchars($_POST["content"]);
-
+    $memberID = $_SESSION['memberID'];
 
 
 
@@ -25,8 +25,9 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $db->exec("SET CHARACTER SET utf8");
             
-            $sql = "INSERT INTO message (ID, topic,content) VALUES ('', :topic, :content)";
+            $sql = "INSERT INTO message (ID, memberID, topic,content) VALUES ('', :memberID, :topic, :content)";
             $result = $db->prepare($sql);
+            $result->bindValue(':memberID',$memberID);
             $result->bindValue(':topic',$topic);
             $result->bindValue(':content',$content);
             

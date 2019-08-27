@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="content">內容：</label>  
                         <div class="col-md-4">
-                            <textarea class="form-control input-md" id="content" name="content"></textarea>  
+                            <textarea cols="100" rows="2" class="form-control input-md" id="content" name="content"></textarea>  
                         </div>
                         
                     </div>

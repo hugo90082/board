@@ -5,7 +5,9 @@
     $db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
     $db->exec("set names utf8");
     // 2. 執行 SQL 敘述
-    $result = $db->prepare("select * from message");
+    $result = $db->prepare("select * from 
+	                        message left join member
+                            ON message.memberID = member.memberID");//join 發文的人帳號
     $result->execute();
     // 3. 處理查詢結果
     // 4. 結束連線
@@ -59,6 +61,7 @@
                 <tr>
                     <th>標題</th>
                     <th>內容</th>
+                    <th>建立者</th>
                     <th>更新時間</th>
                     <th>&nbsp;</th>
                     
@@ -69,21 +72,25 @@
                         <tr>
                             <td><a href="details.php?ID=<?php echo $row['ID'];?>"><?php echo $row['topic'];?></a></td>
                             <td><?php echo $row['content'];?></td>
+                            <td><?php echo $row['mail'];?></td>
                             <td><?php echo $row['datetime'];?></td>
                             <td>
                                 <span class="pull-right">
 
                                     <form method="post" action="delete.php"> 
-                                        <a href="details.php?ID=<?php echo $row['ID'];?>" class="btn btn-primary btn-xs"> 詳細內容</a> 
+                                         
                                         
-                                        <?php if($row['memberID'] == $_SESSION['memberID']){ ?>
-                                            | <a href="edit.php?ID=<?php echo $row['ID'];?>" class="btn btn-xs btn-info">
-                                            <span class="glyphicon glyphicon-pencil"></span> 修改</a> | 
-
+                                        <?php if($row['memberID'] == @$_SESSION['memberID']){ ?>
                                             <input id="msID" name="msID" type="hidden" value="<?php echo $row['ID'];?>"> 
                                             <button type="submit" class="btn btn-xs btn-danger">
-                                            <span class="glyphicon glyphicon-remove"></span> 刪除</button>
+                                            <span class="glyphicon glyphicon-remove"></span> 刪除</button> | 
+
+                                            <a href="edit.php?ID=<?php echo $row['ID'];?>" class="btn btn-xs btn-info">
+                                            <span class="glyphicon glyphicon-pencil"></span> 修改</a> | 
+
                                         <?php } ?>
+
+                                        <a href="details.php?ID=<?php echo $row['ID'];?>" class="btn btn-primary btn-xs"> 詳細內容</a>
 
                                     </form>
 

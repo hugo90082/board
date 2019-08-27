@@ -38,10 +38,10 @@
 
 
     } catch (PDOException $err) {
-        $db->rollback();
+        
         
         echo "<script> alert('此帳號已被註冊'); window.location.replace('signUp.php');</script>";
-        
+        $db->rollback();
         exit();
     }
 ?>

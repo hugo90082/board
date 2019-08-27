@@ -4,7 +4,10 @@
 	$db->exec("set names utf8");
 	$id = htmlspecialchars($_GET["ID"]);
 
-	$result = $db->prepare("select * from message where ID = :ID");
+	$result = $db->prepare("select * from message
+							message left join member
+                            ON message.memberID = member.memberID
+							where ID = :ID");
 	$result->bindValue(':ID', $id, PDO::PARAM_STR);
 	$result->execute();
 	$row = $result->fetch();
@@ -37,7 +40,16 @@
 				<fieldset>
 				
 					<!-- Form Name -->
-					<legend><h2>詳細留言內容</h2></legend>
+					<legend><h2>詳細留言內容
+						<button type="submit" class="btn btn-md btn-danger pull-right" id="back" name="back" value="back">回首頁</button>
+					</h2>	
+
+					<h4><p class='pull-right text-warning'><?="&nbsp;&nbsp;".$row["datetime"]?> </p>
+					<p class='pull-right text-warning'>  主題建立者：<?=$row["mail"]?> || </p></h4>
+					
+					</legend>
+					
+
 					<table>
 						<!-- Text input-->
 						<tr>
@@ -58,15 +70,19 @@
 							</h4>
 						</tr>
 						<!-- Button (Double) -->
-						<tr>
-							<div class="col-md-8">
-								<button type="submit" style="padding-right" id="login" name="login" class="btn btn-danger" value="cancel">回首頁</button>
-							</div>
-
+						<tr><legend></legend>
+							
 						</tr>
 					</table>
-				</fieldset>
+				</fieldset>	
 			</form>
+
+			<form method="post" action="details.php?ID=<?=$id?>" class="form-horizontal">		
+				<textarea cols="100" rows="2" class="form-control input-md" id="content" name="content"></textarea><legend></legend>
+				<button type="submit" class="btn btn-md btn-primary pull-right" id="back" name="back" value="back">回復</button>
+			</form>		
+				
+			
 
 		</div>
 
