@@ -17,7 +17,7 @@
 				<fieldset>
 				
 				<!-- Form Name -->
-					<legend>登入</legend>
+					<legend><h2>登入</h2></legend>
 					<?php 
                         session_start();
                         @$mail = $_SESSION['mail'];
@@ -32,6 +32,7 @@
 					</div>
 					<?php 
 						unset($_SESSION['mail']);
+						
 					?>
 					<h4><p class='text-center text-danger' id="mailValue"></p></h4>
 
@@ -62,15 +63,17 @@
 	</body>
 
 	<script>
+		
 		mail.onchange = function(){
 			var mail = this.value;
 			var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;//判斷格式
 
 			if(reg.test(mail)){
 				document.getElementById('mailValue').innerHTML = "格式正確";
-
+				document.getElementById('login').disabled = false;
 			}else{
 				document.getElementById('mailValue').innerHTML = "mail格式不正確";
+				document.getElementById('login').disabled = true;
 			}
 		}
 	</script>

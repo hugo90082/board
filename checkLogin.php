@@ -9,7 +9,7 @@
         $db->exec("set names utf8");
         $result = $db->prepare("select memberID from member where mail = :mail && PWD = :PWD ");
         $result->bindValue(':mail', $mail, PDO::PARAM_STR);
-        @$result->bindValue(':PWD', $pwd, PDO::PARAM_STR);
+        @$result->bindValue(':PWD', MD5($pwd), PDO::PARAM_STR);
         $result->execute();
         $row = $result->fetch();
         $rowCount = $result->rowCount();

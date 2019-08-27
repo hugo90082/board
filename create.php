@@ -13,7 +13,7 @@
             <form method="post" action="insert.php" class="form-horizontal">
                 <fieldset>
 
-                <!-- Form Name -->
+                <!-- Form Name pattern="" -->
                     <legend>建立留言</legend>
 
                     <!-- Text input-->
@@ -21,7 +21,7 @@
                         <label class="col-md-4 control-label" for="topic">標題：</label>  
                         <div class="col-md-4">
                             <input id="topic" name="topic" type="text" placeholder="" 
-                                class="form-control input-md" pattern="([\u4E00-\u9FFF\w]{1,50})+">
+                                class="form-control input-md">
                             
                         </div>
                     </div>
@@ -30,8 +30,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="content">內容：</label>  
                         <div class="col-md-4">
-                            <textarea class="form-control input-md" id="content" name="content" 
-                                    pattern="([\u4E00-\u9FFF\w]{1,50})+"></textarea>  
+                            <textarea class="form-control input-md" id="content" name="content"></textarea>  
                         </div>
                         
                     </div>

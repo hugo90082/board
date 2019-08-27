@@ -1,3 +1,4 @@
+<!-- 註冊帳號頁面 -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -11,13 +12,14 @@
 	<body>
 
 		<div class="container">
-			<form method="post" action="checkLogin.php" class="form-horizontal">
+			<form method="post" action="checkSignUp.php" class="form-horizontal">
 			
 
 				<fieldset>
 				
 				<!-- Form Name -->
-					<legend>註冊帳號</legend>
+					<legend><h2>註冊帳號</h2></legend>
+
 					<?php 
                         session_start();
                         @$mail = $_SESSION['mail'];
@@ -39,16 +41,16 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="password">新密碼</label>
 						<div class="col-md-4">
-						<input id="password" name="password" type="password" placeholder="請填寫英文或數字或符號 最多二十字" 
-								 class="form-control input-md" size="20" maxlength="20">
+						<input id="password" name="password" type="password" placeholder="請填寫英文或數字或符號" 
+								 class="form-control input-md" maxlength="50">
 						
 						</div>
 					</div>
                     <div class="form-group">
 						<label class="col-md-4 control-label" for="passwordCheck">再次確認密碼</label>
 						<div class="col-md-4">
-						<input id="passwordCheck" name="passwordCheck" type="password" placeholder="請填寫英文或數字或符號 最多二十字" 
-								 class="form-control input-md" size="20" maxlength="20">
+						<input id="passwordCheck" name="passwordCheck" type="password" placeholder="請填寫英文或數字或符號" 
+								 class="form-control input-md" maxlength="50">
 						
 						</div>
 					</div>
@@ -58,7 +60,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="button1id"></label>
 						<div class="col-md-8">
-							<button type="submit" id="login" name="login" class="btn btn-primary" value="OK">登入</button>
+							<button type="submit" disabled="disabled" id="signUp" name="signUp" class="btn btn-primary" value="signUp">確定註冊</button>
 							<button type="submit" id="cancel" name="cancel" class="btn btn-danger" value="cancel">回首頁</button>
 						</div>
 					</div>
@@ -71,32 +73,48 @@
 	</body>
 
 	<script>
+		disabledValueMail = 0
+		disabledValuePwd = 0
 		mail.onchange = function(){
 			var mail = this.value;
 			var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;//判斷格式
 
-            
-
 
 			if(reg.test(mail)){
 				document.getElementById('mailValue').innerHTML = "格式正確";
+				disabledValueMail = 1
+				if(disabledValueMail==1 && disabledValuePwd==1){
+					document.getElementById('signUp').disabled = false;
+				}
 
 			}else{
 				document.getElementById('mailValue').innerHTML = "mail格式不正確";
+				document.getElementById('signUp').disabled = true;
 			}
         }
         
         password.onchange = function(){
             password = document.getElementById('password').value;
-        }
+		}
+		
         passwordCheck.onchange = function(){
             var passwordCheck = this.value;
             if(password==passwordCheck){
 				document.getElementById('passwordValue').innerHTML = "兩次密碼相同";
+				disabledValuePwd = 1
+			
+				if(disabledValueMail==1 && disabledValuePwd==1){
+					document.getElementById('signUp').disabled = false;
+				}	
+			
 
 			}else{
 				document.getElementById('passwordValue').innerHTML = "兩次密碼不相同";
+				document.getElementById('signUp').disabled = true;
 			}
-        }
+		}
+		
+
+		
 	</script>
 </html>
