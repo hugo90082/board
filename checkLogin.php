@@ -7,7 +7,7 @@
     {
         $db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
         $db->exec("set names utf8");
-        $result = $db->prepare("select memberID from member where mail = :mail && PWD = :PWD ");
+        $result = $db->prepare("select * from member where mail = :mail && PWD = :PWD ");
         $result->bindValue(':mail', $mail, PDO::PARAM_STR);
         @$result->bindValue(':PWD', MD5($pwd), PDO::PARAM_STR);
         $result->execute();
@@ -19,7 +19,7 @@
 
             header("location:index.php");//判斷是否按取消
         }elseif($rowCount == 1){
-
+            $_SESSION['memberMail'] = $row["mail"];
             $_SESSION['memberID'] = $row["memberID"];
             echo "<script> alert('登入成功'); window.location.replace('index.php');</script>";
         }else{

@@ -3,6 +3,7 @@
 
 
     $id = $_GET["ID"];
+    $reg = "^/+?[1-9][0-9]*$";
 
     $db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
     $db->exec("set names utf8");
@@ -11,7 +12,14 @@
     $result->bindValue(':ID', $id, PDO::PARAM_STR);
     $result->execute();
     $row = $result->fetch();
+    $rowCount = $result->rowCount();
 
+	if((!preg_match("/^([0-9]+)$/",$id)) || ($rowCount==0)){
+		echo "<script> alert('找無對應文章 將導回首頁'); window.location.replace('index.php');</script>";
+		
+	}else{
+		$rowCount = $result->rowCount();
+	}
 ?>
 
 
@@ -34,7 +42,7 @@
                 <fieldset>
 
                     <!-- Form Name -->
-                    <legend>修改留言</legend>
+                    <legend><h2>修改留言</h2></legend>
 
                     <!-- Text input-->
                     <div class="form-group">

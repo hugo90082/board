@@ -1,14 +1,21 @@
 <?php
-header("content-type:text/html; charset=utf-8");
+	header("content-type:text/html; charset=utf-8");
+	$db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
+	$db->exec("set names utf8");
+	$id = htmlspecialchars($_GET["ID"]);
 
-$db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
-$db->exec("set names utf8");
-$id = $_GET["ID"];
+	$result = $db->prepare("select * from message where ID = :ID");
+	$result->bindValue(':ID', $id, PDO::PARAM_STR);
+	$result->execute();
+	$row = $result->fetch();
+    $rowCount = $result->rowCount();
 
-$result = $db->prepare("select * from message where ID = :ID");
-$result->bindValue(':ID', $id, PDO::PARAM_STR);
-$result->execute();
-$row = $result->fetch();
+	if((!preg_match("/^([0-9]+)$/",$id)) || ($rowCount==0)){
+		echo "<script> alert('找無對應文章 將導回首頁'); window.location.replace('index.php');</script>";
+		
+	}else{
+		$rowCount = $result->rowCount();
+	}
 
 ?>
 

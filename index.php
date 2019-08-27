@@ -10,6 +10,7 @@
     // 3. 處理查詢結果
     // 4. 結束連線
     // $db = null;
+    @$memberMail = $_SESSION['memberMail'];
 ?>
 
 <!DOCTYPE html>
@@ -22,19 +23,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    
     <style>
         .container{
             width:97%
         }
     </style>
-
+    <body>
         <div class="container">
         
 
-
+        <h3><p class='text-center text-info'>歡迎！<?= $memberMail ? $memberMail : '訪客'?></p></h3>
             
             <?php if(isset($_SESSION['memberID'])){ ?>
+
                 <h2>留言板
                 <a href="logout.php" class="btn btn-md btn-success pull-right">登出</a>
                 <a href="create.php" class="btn btn-md btn-success pull-right">
@@ -57,7 +59,9 @@
                 <tr>
                     <th>標題</th>
                     <th>內容</th>
+                    <th>更新時間</th>
                     <th>&nbsp;</th>
+                    
                 </tr>
                 </thead>
                 <tbody>
@@ -65,14 +69,15 @@
                         <tr>
                             <td><a href="details.php?ID=<?php echo $row['ID'];?>"><?php echo $row['topic'];?></a></td>
                             <td><?php echo $row['content'];?></td>
+                            <td><?php echo $row['datetime'];?></td>
                             <td>
                                 <span class="pull-right">
 
                                     <form method="post" action="delete.php"> 
                                         <a href="details.php?ID=<?php echo $row['ID'];?>" class="btn btn-primary btn-xs"> 詳細內容</a> 
                                         
-                                        <?php if(isset($_SESSION['memberID'])){ ?>
-                                            |<a href="edit.php?ID=<?php echo $row['ID'];?>" class="btn btn-xs btn-info">
+                                        <?php if($row['memberID'] == $_SESSION['memberID']){ ?>
+                                            | <a href="edit.php?ID=<?php echo $row['ID'];?>" class="btn btn-xs btn-info">
                                             <span class="glyphicon glyphicon-pencil"></span> 修改</a> | 
 
                                             <input id="msID" name="msID" type="hidden" value="<?php echo $row['ID'];?>"> 
