@@ -24,9 +24,9 @@
                     ?>
 				<!-- Text input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="ID">帳號Mail hugo</label>  
+						<label class="col-md-4 control-label" for="ID">帳號Mail</label>  
 						<div class="col-md-4">
-						<input id="mail" name="mail" type="text" placeholder="請填寫mail 最多三十字" 
+						<input id="mail" name="mail" type="text" placeholder="請輸入帳號mail" 
 								class="form-control input-md" size="30" maxlength="30" value="<?=$mail?>">
 						</div>
 					</div>
@@ -38,9 +38,9 @@
 
 					<!-- Password input-->
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="password">密碼1111</label>
+						<label class="col-md-4 control-label" for="password">密碼</label>
 						<div class="col-md-4">
-						<input id="password" name="password" type="password" placeholder="請填寫英文或數字或符號 最多二十字" 
+						<input id="password" name="password" type="password" placeholder="請輸入密碼" 
 								 class="form-control input-md" size="20" maxlength="20">
 						
 						</div>
@@ -64,7 +64,7 @@
 
 	<script>
 		
-		mail.onchange = function(){
+		mail.onkeyup = function(){
 			var mail = this.value;
 			var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;//判斷格式
 

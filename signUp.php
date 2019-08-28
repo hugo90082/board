@@ -75,7 +75,7 @@
 	<script>
 		disabledValueMail = 0
 		disabledValuePwd = 0
-		mail.onchange = function(){
+		mail.onkeyup = function(){
 			var mail = this.value;
 			var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;//判斷格式
 
@@ -93,11 +93,11 @@
 			}
         }
         
-        password.onchange = function(){
+        password.onkeyup = function(){
             password = document.getElementById('password').value;
 		}
 		
-        passwordCheck.onchange = function(){
+        passwordCheck.onkeyup = function(){
             var passwordCheck = this.value;
             if(password==passwordCheck){
 				document.getElementById('passwordValue').innerHTML = "兩次密碼相同";

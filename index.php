@@ -40,7 +40,7 @@
             <?php if(isset($_SESSION['memberID'])){ ?>
 
                 <h2>留言板
-                <a href="logout.php" class="btn btn-md btn-success pull-right">登出</a>
+                <a href="logout.php" class="btn btn-md btn-danger pull-right">登出</a>
                 <a href="create.php" class="btn btn-md btn-success pull-right">
                 <span class="glyphicon glyphicon-plus"></span> 新增留言</a></h2>
             <?php } ?>
@@ -50,7 +50,7 @@
             
             <?php if(!isset($_SESSION['memberID'])){ ?>
                 <h2>留言板
-                <a href="signUp.php" class="btn btn-md btn-success pull-right">註冊</a>
+                <a href="signUp.php" class="btn btn-md btn-danger pull-right">註冊</a>
                 <a href="login.php" class="btn btn-md btn-success pull-right">使用者登入</a></h2>
             <?php } ?>
 
@@ -58,14 +58,14 @@
 
             <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th>標題</th>
-                    <th>內容</th>
-                    <th>建立者</th>
-                    <th>更新時間</th>
-                    <th>&nbsp;</th>
-                    
-                </tr>
+                    <tr>
+                        <th>標題</th>
+                        <th>內容</th>
+                        <th>建立者</th>
+                        <th>更新時間</th>
+                        <th>&nbsp;</th>
+                        
+                    </tr>
                 </thead>
                 <tbody>
                     <?php while ($row = $result->fetch()){ ?>
@@ -80,7 +80,7 @@
                                     <form method="post" action="delete.php"> 
                                          
                                         
-                                        <?php if($row['memberID'] == @$_SESSION['memberID']){ ?>
+                                        <?php if(@$_SESSION['memberID'] == 1 || $row['memberID'] == @$_SESSION['memberID']){ ?>
                                             <input id="msID" name="msID" type="hidden" value="<?php echo $row['ID'];?>"> 
                                             <button type="submit" class="btn btn-xs btn-danger">
                                             <span class="glyphicon glyphicon-remove"></span> 刪除</button> | 
