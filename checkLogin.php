@@ -1,5 +1,6 @@
 <?php
-    require_once 'header.php';
+    header("content-type:text/html; charset=utf-8");
+    session_start();
     $mail = htmlspecialchars($_POST["mail"]);
     $pwd = htmlspecialchars($_POST["password"]);
     try
@@ -15,8 +16,8 @@
 
 
         if(@$_POST["cancel"] == "cancel"){
-            unset($_SESSION['mail']);
-            header("location:index.php");//判斷是否按回首頁
+
+            header("location:index.php");//判斷是否按取消
         }elseif($rowCount == 1){
             $_SESSION['memberMail'] = $row["mail"];
             $_SESSION['memberID'] = $row["memberID"];
@@ -32,5 +33,5 @@
         exit();
     }
 
-    $smarty->display('index.html');
+
 	?>
