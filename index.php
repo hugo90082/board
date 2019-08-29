@@ -1,18 +1,5 @@
 <?php
-    /**
-     * Example Application
-     *
-     * @package Example-application
-     */
-    ini_set("display_errors", "On");
-    require './libs/Smarty.class.php';
-    $smarty = new Smarty;
-    $smarty->left_delimiter = '{{';
-    $smarty->right_delimiter = '}}';
-
-
-    header("content-type:text/html; charset=utf-8");
-    session_start();
+    require_once 'header.php';
     // 1. 連接資料庫伺服器
     $db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
     $db->exec("set names utf8");
@@ -23,10 +10,18 @@
     $result->execute();
     // 3. 處理查詢結果
     // 4. 結束連線
-    // $db = null;
+    $db = null;
     @$memberMail = $_SESSION['memberMail'];
+    //$_SESSION['memberID'] = "";
 
+    
+
+
+    
+    $smarty->assign('result', $result);
     $smarty->assign('memberMail', $memberMail);
+
+
     $smarty->display('index.html');
 
 
