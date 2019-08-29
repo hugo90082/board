@@ -119,11 +119,8 @@
 			<form method="post" action="detailsReply.php?ID=<?=$id?>" class="form-horizontal">		
 				<textarea cols="100" rows="2" class="form-control input-md" id="reply" name="reply"></textarea><legend></legend>
 				<button type="submit" class="btn btn-md btn-primary pull-right" id="send" name="send" value="send">回復</button>
-				<?php 
-					
-					@$NoValue = $_SESSION['NoValue'];
-				?>
-				<h4><p class='text-center text-danger'><?= $NoValue ? $NoValue : ' '?></p></h4>
+
+				<h4><p class='text-center text-danger'><?=isset($_SESSION['NoValue'])?$_SESSION['NoValue']:'<br>'?></p></h4>
 				<?php 
 
 					unset($_SESSION['NoValue']);

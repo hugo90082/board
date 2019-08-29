@@ -20,7 +20,7 @@
 					<legend><h2>登入</h2></legend>
 					<?php 
                         session_start();
-                        @$mail = $_SESSION['mail'];
+                        $mail = $_SESSION['mail']??"";
                     ?>
 				<!-- Text input-->
 					<div class="form-group">

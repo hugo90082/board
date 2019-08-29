@@ -12,7 +12,7 @@
     // 3. 處理查詢結果
     // 4. 結束連線
     // $db = null;
-    @$memberMail = $_SESSION['memberMail'];
+    $memberMail = $_SESSION['memberMail']??"";
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +80,7 @@
                                     <form method="post" action="delete.php"> 
                                          
                                         
-                                        <?php if(@$_SESSION['memberID'] == 1 || $row['memberID'] == @$_SESSION['memberID']){ ?>
+                                        <?php if(($_SESSION['memberID']??'') == 1 || $row['memberID'] == ($_SESSION['memberID']??'')){ ?>
                                             <input id="msID" name="msID" type="hidden" value="<?php echo $row['ID'];?>"> 
                                             <button type="submit" class="btn btn-xs btn-danger">
                                             <span class="glyphicon glyphicon-remove"></span> 刪除</button> | 

@@ -36,9 +36,9 @@
                     </div>
                     <?php 
                         session_start();
-                        @$NoValue = $_SESSION['NoValue'];
+                        
                     ?>
-                    <h4><p class='text-center text-danger'><?= $NoValue ? $NoValue : ' '?></p></h4>
+                    <h4><p class='text-center text-danger'><?=isset($_SESSION['NoValue'])?$_SESSION['NoValue']:'<br>'?></p></h4>
                     <?php 
 
                         unset($_SESSION['NoValue']);
