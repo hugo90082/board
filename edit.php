@@ -3,7 +3,7 @@
 
 
     $id = $_GET["ID"];
-    $reg = "^/+?[1-9][0-9]*$";
+
 
     $db = new PDO("mysql:host=localhost;dbname=message_board;port=3306", "root", "");
     $db->exec("set names utf8");
