@@ -95,10 +95,6 @@
         
         password.onkeyup = function(){
             password = document.getElementById('password').value;
-		}
-		
-        passwordCheck.onkeyup = function(){
-            var passwordCheck = this.value;
             if(password==passwordCheck){
 				document.getElementById('passwordValue').innerHTML = "兩次密碼相同";
 				disabledValuePwd = 1
@@ -114,7 +110,22 @@
 			}
 		}
 		
+        passwordCheck.onkeyup = function(){
+            passwordCheck = this.value;
+            if(password==passwordCheck){
+				document.getElementById('passwordValue').innerHTML = "兩次密碼相同";
+				disabledValuePwd = 1
+			
+				if(disabledValueMail==1 && disabledValuePwd==1){
+					document.getElementById('signUp').disabled = false;
+				}	
+			
 
+			}else{
+				document.getElementById('passwordValue').innerHTML = "兩次密碼不相同";
+				document.getElementById('signUp').disabled = true;
+			}
+		}
 		
 	</script>
 </html>
