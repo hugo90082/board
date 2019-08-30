@@ -49,7 +49,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="topic">標題:</label>  
                         <div class="col-md-4">
-                            <input id="topic" name="topic" value="<?php echo $row['topic'];?>" type="text" placeholder="" class="form-control input-md">
+                            <input id="topic" maxlength="50" name="topic" value="<?php echo $row['topic'];?>" type="text" placeholder="" class="form-control input-md">
                         
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="content">內容:</label>  
                         <div class="col-md-4">
-                            <textarea class="form-control input-md" id="content" name="content"><?php echo $row['content'];?></textarea>
+                            <textarea maxlength="200" class="form-control input-md" id="content" name="content"><?php echo $row['content'];?></textarea>
                         </div>
                     </div>
                     <input id="msID" name="msID" type="hidden" value="<?php echo $_GET["ID"]?>"> 

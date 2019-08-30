@@ -117,7 +117,7 @@
 			</table>
 			<?php }?>
 			<form method="post" action="detailsReply.php?ID=<?=$id?>" class="form-horizontal">		
-				<textarea cols="100" rows="2" class="form-control input-md" id="reply" name="reply"></textarea><legend></legend>
+				<input cols="100" rows="1" maxlength="100" class="form-control input-md" id="reply" name="reply"><legend></legend>
 				<button type="submit" class="btn btn-md btn-primary pull-right" id="send" name="send" value="send">回復</button>
 
 				<h4><p class='text-center text-danger'><?=isset($_SESSION['NoValue'])?$_SESSION['NoValue']:'<br>'?></p></h4>
