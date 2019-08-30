@@ -59,7 +59,7 @@
 				
 					<!-- Form Name -->
 					<legend>
-						<h2>詳細留言內容
+						<h2>詳細內容
 							<button type="submit" class="btn btn-md btn-danger pull-right" id="back" name="back" value="back">回首頁</button>
 						</h2>	
 

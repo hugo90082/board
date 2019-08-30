@@ -42,7 +42,7 @@
                 <h2>留言板
                 <a href="logout.php" class="btn btn-md btn-danger pull-right">登出</a>
                 <a href="create.php" class="btn btn-md btn-success pull-right">
-                <span class="glyphicon glyphicon-plus"></span> 新增留言</a></h2>
+                <span class="glyphicon glyphicon-plus"></span> 新增主題</a></h2>
             <?php } ?>
 
 
@@ -79,16 +79,17 @@
 
                                     <form method="post" action="delete.php"> 
                                          
-                                        
+                                        <?php if($row['memberID'] == ($_SESSION['memberID']??'')){ ?>
+                                            <a href="edit.php?ID=<?php echo $row['ID'];?>" class="btn btn-xs btn-info">
+                                            <span class="glyphicon glyphicon-pencil"></span> 修改</a> | 
+                                        <?php } ?>
                                         <?php if(($_SESSION['memberID']??'') == 1 || $row['memberID'] == ($_SESSION['memberID']??'')){ ?>
                                             <input id="msID" name="msID" type="hidden" value="<?php echo $row['ID'];?>"> 
                                             <button type="submit" class="btn btn-xs btn-danger">
                                             <span class="glyphicon glyphicon-remove"></span> 刪除</button> | 
-
-                                            <a href="edit.php?ID=<?php echo $row['ID'];?>" class="btn btn-xs btn-info">
-                                            <span class="glyphicon glyphicon-pencil"></span> 修改</a> | 
-
                                         <?php } ?>
+                                        
+                                        
 
                                         <a href="details.php?ID=<?php echo $row['ID'];?>" class="btn btn-primary btn-xs"> 詳細內容</a>
 

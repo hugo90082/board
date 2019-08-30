@@ -43,7 +43,7 @@
                 <fieldset>
 
                     <!-- Form Name -->
-                    <legend><h2>修改留言</h2></legend>
+                    <legend><h2>修改主題</h2></legend>
 
                     <!-- Text input-->
                     <div class="form-group">

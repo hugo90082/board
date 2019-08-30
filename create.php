@@ -14,7 +14,7 @@
                 <fieldset>
 
                 <!-- Form Name pattern="" -->
-                    <legend><h2>建立留言</h2></legend>
+                    <legend><h2>建立主題</h2></legend>
 
                     <!-- Text input-->
                     <div class="form-group">
