@@ -50,7 +50,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="button1id"></label>
 						<div class="col-md-8">
-							<button type="submit" id="login" name="login" class="btn btn-primary" value="OK">登入</button>
+							<button type="submit" disabled="disabled" id="login" name="login" class="btn btn-primary" value="OK">登入</button>
 							<button type="submit" id="cancel" name="cancel" class="btn btn-danger" value="cancel">回首頁</button>
 						</div>
 					</div>
